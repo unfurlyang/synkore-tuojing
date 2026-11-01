@@ -1,0 +1,20 @@
+{
+  "url": "https://synkore-tuojing.azuremoon15.chatgpt.site",
+  "started": "2026-11-01T02:09:55.481Z",
+  "checks": {
+    "public_access": true,
+    "model_configured": true,
+    "ghost_webgl": true,
+    "live_text": true,
+    "create_teacher": true,
+    "session_isolation": true,
+    "course_style_transfer": true,
+    "verified_speech_status": 200,
+    "speech_text_verified": true,
+    "private_audio": true,
+    "audio_asr": true,
+    "post_course_audio": true
+  },
+  "page_errors": [],
+  "success": true
+}

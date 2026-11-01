@@ -8,10 +8,13 @@
 
 本仓库提供作品、源码和复现说明；团队的详细信息与工作总览另行提交。
 
+![synkore·拓境实际云端界面](docs/images/cloud-app.png)
+
 ## 直接体验
 
 - **[打开在线 App](https://synkore-tuojing.azuremoon15.chatgpt.site)**：无需安装、无需填写 API 密钥。首次录音请允许浏览器使用麦克风。
 - **[下载 Windows App](https://github.com/unfurlyang/synkore-tuojing/releases/latest)**：下载 ZIP 后完整解压，双击 `synkore.exe`。桌面版首次使用自己的 MiMo 配置；交付包不含开发者密钥。
+- **[实际操作录屏](https://github.com/unfurlyang/synkore-tuojing/releases/download/v1.6.0/Synkore-Tuojing-demo.mp4)**（约两分钟，画面录屏）
 - **[3 分钟体验流程](docs/DEMO.md)** · **[部署与复现](docs/RUNNING.md)** · **[第三方来源](THIRD_PARTY_NOTICES.md)**
 
 ## 三项核心功能
