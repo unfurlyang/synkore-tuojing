@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+const root=process.cwd();
+execFileSync(process.execPath,[path.join(root,'desktop/node_modules/vite/bin/vite.js'),'build'],{cwd:path.join(root,'desktop'),stdio:'inherit'});
+fs.mkdirSync(path.join(root,'public'),{recursive:true});
+fs.cpSync(path.join(root,'desktop/web/assets'),path.join(root,'public/assets'),{recursive:true});
+let html=fs.readFileSync(path.join(root,'desktop/web/index.html'),'utf8').replaceAll('__LOCAL_APP_TOKEN__','');
+html=html.replace('<head>','<head><script>window.SYNKORE_CLOUD=true;</script>');
+fs.writeFileSync(path.join(root,'public/app.html'),html);
+console.log('Prepared the same 3D application for cloud hosting.');

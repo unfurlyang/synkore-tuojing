@@ -1,0 +1,16 @@
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),out=path.resolve(process.env.SYNKORE_OUTPUT_DIR||path.join(root,'release'));
+const destination=path.join(out,process.env.SYNKORE_RELEASE_DIR||'synkore-Windows');fs.mkdirSync(destination,{recursive:true});
+const runtime=path.join(root,'node_modules/electron/dist');
+if(!fs.existsSync(path.join(runtime,'electron.exe')))throw Error('先运行 node node_modules/electron/install.js 安装官方运行时。');
+fs.cpSync(runtime,destination,{recursive:true});
+fs.renameSync(path.join(destination,'electron.exe'),path.join(destination,'synkore.exe'));
+const appDir=path.join(destination,'resources/app');fs.mkdirSync(appDir,{recursive:true});
+for(const dir of ['electron','web'])fs.cpSync(path.join(root,dir),path.join(appDir,dir),{recursive:true});
+fs.copyFileSync(path.join(root,'package.json'),path.join(appDir,'package.json'));
+fs.mkdirSync(path.join(appDir,'backend'),{recursive:true});
+const backend=path.join(root,'runtime-build/tingjian-backend');
+if(!fs.existsSync(path.join(backend,'tingjian-backend.exe')))throw Error('请先用 PyInstaller 构建后端。');
+fs.cpSync(backend,path.join(appDir,'runtime'),{recursive:true});
+fs.writeFileSync(path.join(destination,'先读我.txt'),'synkore·拓境 1.6.0\r\n\r\n双击 synkore.exe 即可启动。整个文件夹需要一起保留。\r\n首次使用点击“模型与设置”填写模型服务配置。\r\n程序会自动启动本机后端，不需要另外安装 Python、Node.js 或 Blender。\r\n密钥使用当前 Windows 账户加密保存；分享此软件文件夹不会附带你的配置。\r\n用户数据保存在 %APPDATA%\\Synkore。\r\n');
+console.log(JSON.stringify({portable:destination,exe:path.join(destination,'synkore.exe')}));

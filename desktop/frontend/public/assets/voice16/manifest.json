@@ -1,0 +1,189 @@
+{
+  "version": "1.4.2",
+  "preview_text": "你好呀，我是你的小幽灵。慢慢来，我会陪着你。",
+  "packs": {
+    "gentle": {
+      "name": "温柔",
+      "clips": {
+        "你好呀，我是你的小幽灵。慢慢来，我会陪着你。": "/assets/voice16/gentle/aa04619cf6ad9f44.wav",
+        "今天，也一起认真听课吧。": "/assets/voice16/gentle/4bfe1f6ce788f023.wav",
+        "好耶，我们越来越有默契啦。": "/assets/voice16/gentle/a943e59e63b04ff3.wav",
+        "收到，悄悄眨个眼。": "/assets/voice16/gentle/2a5da0777db73d27.wav",
+        "我眯一会儿，想我了就叫我。": "/assets/voice16/gentle/e3d05d9a84bfa41b.wav",
+        "醒啦，我在这儿呢。": "/assets/voice16/gentle/a6ac0f18e47d005a.wav",
+        "这段整理好啦，一起看看。": "/assets/voice16/gentle/13254b83e517a382.wav",
+        "你好呀，今天想听些什么？": "/assets/voice16/gentle/1f061f08036d6639.wav",
+        "好像卡住了，我们再试一次。": "/assets/voice16/gentle/86324db74ef2cd9b.wav",
+        "收到，我会认真听。": "/assets/voice16/gentle/9bceca04087c37dc.wav",
+        "累了的话，我们就歇一会儿。": "/assets/voice16/gentle/03cca766227039f6.wav",
+        "转一圈，换个好心情。": "/assets/voice16/gentle/79277141b93664d0.wav",
+        "正在整理，马上就好。": "/assets/voice16/gentle/f215a098154ebfa2.wav",
+        "正在换一种讲法，稍等一下。": "/assets/voice16/gentle/4d1c047ef2ec1ac4.wav",
+        "暂停一下，休息也是学习的一部分。": "/assets/voice16/gentle/96a488ecf28bf0f9.wav",
+        "我在认真了解这位老师。": "/assets/voice16/gentle/42b761cf8097500a.wav",
+        "谢谢你，感觉好温暖。": "/assets/voice16/gentle/f69f607fe7031b43.wav"
+      }
+    },
+    "bright": {
+      "name": "灵动",
+      "clips": {
+        "你好呀，我是你的小幽灵。慢慢来，我会陪着你。": "/assets/voice16/bright/aa04619cf6ad9f44.wav",
+        "今天，也一起认真听课吧。": "/assets/voice16/bright/4bfe1f6ce788f023.wav",
+        "好耶，我们越来越有默契啦。": "/assets/voice16/bright/a943e59e63b04ff3.wav",
+        "收到，悄悄眨个眼。": "/assets/voice16/bright/2a5da0777db73d27.wav",
+        "我眯一会儿，想我了就叫我。": "/assets/voice16/bright/e3d05d9a84bfa41b.wav",
+        "醒啦，我在这儿呢。": "/assets/voice16/bright/a6ac0f18e47d005a.wav",
+        "这段整理好啦，一起看看。": "/assets/voice16/bright/13254b83e517a382.wav",
+        "你好呀，今天想听些什么？": "/assets/voice16/bright/1f061f08036d6639.wav",
+        "好像卡住了，我们再试一次。": "/assets/voice16/bright/86324db74ef2cd9b.wav",
+        "收到，我会认真听。": "/assets/voice16/bright/9bceca04087c37dc.wav",
+        "累了的话，我们就歇一会儿。": "/assets/voice16/bright/03cca766227039f6.wav",
+        "转一圈，换个好心情。": "/assets/voice16/bright/79277141b93664d0.wav",
+        "正在整理，马上就好。": "/assets/voice16/bright/f215a098154ebfa2.wav",
+        "正在换一种讲法，稍等一下。": "/assets/voice16/bright/4d1c047ef2ec1ac4.wav",
+        "暂停一下，休息也是学习的一部分。": "/assets/voice16/bright/96a488ecf28bf0f9.wav",
+        "我在认真了解这位老师。": "/assets/voice16/bright/42b761cf8097500a.wav",
+        "谢谢你，感觉好温暖。": "/assets/voice16/bright/f69f607fe7031b43.wav"
+      }
+    }
+  },
+  "checks": {
+    "/assets/voice16/gentle/aa04619cf6ad9f44.wav": {
+      "text": "你好呀，我是你的小幽灵。慢慢来，我会陪着你。",
+      "sha256": "11f7c74e9015a7cba8445143dc8f091c72e9bd32ac0b775a2451f81ec189e11c"
+    },
+    "/assets/voice16/gentle/4bfe1f6ce788f023.wav": {
+      "text": "今天，也一起认真听课吧。",
+      "sha256": "aaba8ef94a264667e73991a260c0327989cc5fc93ed8e8559353334cc5f9bab4"
+    },
+    "/assets/voice16/gentle/a943e59e63b04ff3.wav": {
+      "text": "好耶，我们越来越有默契啦。",
+      "sha256": "c4eb183f33e5374e66ff25801c22773e96049a3485c02fb725af567dfabf02c7"
+    },
+    "/assets/voice16/gentle/2a5da0777db73d27.wav": {
+      "text": "收到，悄悄眨个眼。",
+      "sha256": "806e59163a687594fc238b218faf4664a9e912667e36308dabb48e6b99496940"
+    },
+    "/assets/voice16/gentle/e3d05d9a84bfa41b.wav": {
+      "text": "我眯一会儿，想我了就叫我。",
+      "sha256": "610e7484b8f1ccacadd29080c0808fe1e3da6afb04d7cf68dd29b2bb1f6e286b"
+    },
+    "/assets/voice16/gentle/a6ac0f18e47d005a.wav": {
+      "text": "醒啦，我在这儿呢。",
+      "sha256": "cb58edd9594d9c8d2ee325d50032e89c4edd262ab2899be158163f452a12ad7c"
+    },
+    "/assets/voice16/gentle/13254b83e517a382.wav": {
+      "text": "这段整理好啦，一起看看。",
+      "sha256": "a6b714902795911f8145258925edebd0957a7c386384781e10bb777e37c54a27"
+    },
+    "/assets/voice16/gentle/1f061f08036d6639.wav": {
+      "text": "你好呀，今天想听些什么？",
+      "sha256": "c86e9cc0de4de5bc66bf2d061c661de9d9dd5c7b988c9fc33298951f1beac12d"
+    },
+    "/assets/voice16/gentle/86324db74ef2cd9b.wav": {
+      "text": "好像卡住了，我们再试一次。",
+      "sha256": "092ef02921c74c04117c030a3b6c70776c708af739a553e5d0b16862b84cae27"
+    },
+    "/assets/voice16/gentle/9bceca04087c37dc.wav": {
+      "text": "收到，我会认真听。",
+      "sha256": "2260c0e2b2b38c68389850868677d38abf2e96692140646813ae7cc96adcce5b"
+    },
+    "/assets/voice16/gentle/03cca766227039f6.wav": {
+      "text": "累了的话，我们就歇一会儿。",
+      "sha256": "1c77d99ed70d7b1a44b97cdcbf0ab56efd71dcaea29fa398a21bf8c9aa309b97"
+    },
+    "/assets/voice16/gentle/79277141b93664d0.wav": {
+      "text": "转一圈，换个好心情。",
+      "sha256": "65b48ba773788dc4628ee94ab2ba28fe6c299876c27eab66821ed07513104a09"
+    },
+    "/assets/voice16/gentle/f215a098154ebfa2.wav": {
+      "text": "正在整理，马上就好。",
+      "sha256": "622fd8b9ed700cfccfb6ac0d2395a01b5860eca7067b212018179e5332662b70"
+    },
+    "/assets/voice16/gentle/4d1c047ef2ec1ac4.wav": {
+      "text": "正在换一种讲法，稍等一下。",
+      "sha256": "13617f1076a7d093ff2a3fecf32704d223ffa5b23538a51597ee7a13981797ba"
+    },
+    "/assets/voice16/gentle/96a488ecf28bf0f9.wav": {
+      "text": "暂停一下，休息也是学习的一部分。",
+      "sha256": "216a867b47117691c781d09eb7014ba078dcb8fa821a0eafddff1b98f847fd31"
+    },
+    "/assets/voice16/gentle/42b761cf8097500a.wav": {
+      "text": "我在认真了解这位老师。",
+      "sha256": "59b02f908fec8b3e87576e31d8eecbed829216c0ebe373ce39392f5602889c4f"
+    },
+    "/assets/voice16/gentle/f69f607fe7031b43.wav": {
+      "text": "谢谢你，感觉好温暖。",
+      "sha256": "f70aaa30a246b34cc13bca11eb70645ba177fdd634e2303f3fc5ecc2ad8ec5c5"
+    },
+    "/assets/voice16/bright/aa04619cf6ad9f44.wav": {
+      "text": "你好呀，我是你的小幽灵。慢慢来，我会陪着你。",
+      "sha256": "1ccb632645939f2b60315bdbc9565a7d968baa7a70ec437118bbd5a0fdfff56b"
+    },
+    "/assets/voice16/bright/4bfe1f6ce788f023.wav": {
+      "text": "今天，也一起认真听课吧。",
+      "sha256": "bb8f13d54186c16a5283e0db80382f8f3e045d6258b8964639dde00484e39da9"
+    },
+    "/assets/voice16/bright/a943e59e63b04ff3.wav": {
+      "text": "好耶，我们越来越有默契啦。",
+      "sha256": "952417dcf7e57f78d92ca9293d7b1a79fe2d1b9997d134a5e9474f63e3ee238e"
+    },
+    "/assets/voice16/bright/2a5da0777db73d27.wav": {
+      "text": "收到，悄悄眨个眼。",
+      "sha256": "ae2cfa6beba4a2843b40fc895156bf7db008d9f031f2170d405acb97842af8da"
+    },
+    "/assets/voice16/bright/e3d05d9a84bfa41b.wav": {
+      "text": "我眯一会儿，想我了就叫我。",
+      "sha256": "9deb8533734aca8e93dfbaa51d7c355e156c4e463be6b9c55a6e2b71f754f615"
+    },
+    "/assets/voice16/bright/a6ac0f18e47d005a.wav": {
+      "text": "醒啦，我在这儿呢。",
+      "sha256": "56a1cc21c9c9aed4b230b975e14f5ce4bb81b09a066c7a080eb10d58c0c14e2b"
+    },
+    "/assets/voice16/bright/13254b83e517a382.wav": {
+      "text": "这段整理好啦，一起看看。",
+      "sha256": "d5e9adc49653b5264207d29478927676d266500c1a3fd41dffdd484b7594e052"
+    },
+    "/assets/voice16/bright/1f061f08036d6639.wav": {
+      "text": "你好呀，今天想听些什么？",
+      "sha256": "b9f11ec2011dcd6cc7dbb71e9d0cadb6a5b034edf4eea1cbac42397a06ededbb"
+    },
+    "/assets/voice16/bright/86324db74ef2cd9b.wav": {
+      "text": "好像卡住了，我们再试一次。",
+      "sha256": "726c787b9476e2aeb804d78a4ca3236053ee202f84ee4350a4db8cc5505efb78"
+    },
+    "/assets/voice16/bright/9bceca04087c37dc.wav": {
+      "text": "收到，我会认真听。",
+      "sha256": "39504878f8eefa8e350c3219ae04d90717804ffadb34245ed7b802a9d1c0cf8d"
+    },
+    "/assets/voice16/bright/03cca766227039f6.wav": {
+      "text": "累了的话，我们就歇一会儿。",
+      "sha256": "bfea8935224e814bd35c307e6082168e5604f21e37c48bc08a39fe318b00c831"
+    },
+    "/assets/voice16/bright/79277141b93664d0.wav": {
+      "text": "转一圈，换个好心情。",
+      "sha256": "d88130e8cd26e89c9123fa0433676ef6b114db4ef5376fe8358c6c4d3b65fce4"
+    },
+    "/assets/voice16/bright/f215a098154ebfa2.wav": {
+      "text": "正在整理，马上就好。",
+      "sha256": "6758b9abba5ebf4048ec8c37c0aee40f9b0a2b63ec612831b2716adfa31130f9"
+    },
+    "/assets/voice16/bright/4d1c047ef2ec1ac4.wav": {
+      "text": "正在换一种讲法，稍等一下。",
+      "sha256": "086dbd0747a0b75b90fd659c614e4337a9303fdc85583e4ba0aef795b0a5b23d"
+    },
+    "/assets/voice16/bright/96a488ecf28bf0f9.wav": {
+      "text": "暂停一下，休息也是学习的一部分。",
+      "sha256": "7a7648826e893770d725f22fca54e67671c2636c407ffcb6b82beda14161eb90"
+    },
+    "/assets/voice16/bright/42b761cf8097500a.wav": {
+      "text": "我在认真了解这位老师。",
+      "sha256": "5c32d5bdf36ec41ca7ee7a0e9ba308bf267fc1456f4b69d8ecee6e7f443a65e0"
+    },
+    "/assets/voice16/bright/f69f607fe7031b43.wav": {
+      "text": "谢谢你，感觉好温暖。",
+      "sha256": "47c88ab0dbbae64fe69d225a4abb36c09fe1dbb2e448453adbe3cf5b52560ca1"
+    }
+  },
+  "all_clips_verified": true
+}

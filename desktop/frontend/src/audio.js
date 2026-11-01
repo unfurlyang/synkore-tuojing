@@ -1,0 +1,27 @@
+import {encodeWav,VoiceSegmenter,PCMDecoder,allowedAudioUrl} from './core.mjs';
+export async function samplesToWav(samples,rate){const offline=new OfflineAudioContext(1,Math.ceil(samples.length*16000/rate),16000),buffer=offline.createBuffer(1,samples.length,rate);buffer.copyToChannel(samples,0);const source=offline.createBufferSource();source.buffer=buffer;source.connect(offline.destination);source.start();const result=await offline.startRendering();return new Blob([encodeWav(result.getChannelData(0),16000)],{type:'audio/wav'});}
+export async function blobToWav(blob){const ctx=new AudioContext();try{const decoded=await ctx.decodeAudioData(await blob.arrayBuffer()),samples=new Float32Array(decoded.length);for(let c=0;c<decoded.numberOfChannels;c++){const channel=decoded.getChannelData(c);for(let i=0;i<samples.length;i++)samples[i]+=channel[i]/decoded.numberOfChannels;}return await samplesToWav(samples,decoded.sampleRate);}finally{await ctx.close();}}
+export class MicCapture{
+  constructor(onSegment,onLevel){this.onSegment=onSegment;this.onLevel=onLevel;this.active=false;this.paused=false;}
+  async start(){
+    if(this.active)return;
+    if(!navigator.mediaDevices?.getUserMedia)throw Error('无法访问麦克风，请在桌面 App 中使用录音。');
+    try{this.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});this.context=new AudioContext();await this.context.audioWorklet.addModule('/assets/capture-worklet.js');await this.context.resume();this.segmenter=new VoiceSegmenter(this.context.sampleRate,(s,r)=>this.onSegment(s,r));this.node=new AudioWorkletNode(this.context,'tingjian-capture');this.source=this.context.createMediaStreamSource(this.stream);this.mute=this.context.createGain();this.mute.gain.value=0;this.source.connect(this.node);this.node.connect(this.mute);this.mute.connect(this.context.destination);this.active=true;this.paused=false;this.node.port.onmessage=e=>{if(!this.active||this.paused)return;const level=this.segmenter.push(e.data);this.onLevel(level);};}
+    catch(e){await this.stop(false);const msg=e.name==='NotAllowedError'?'没有获得麦克风权限。请在系统中允许 synkore访问麦克风后重试。':e.name==='NotFoundError'?'没有找到麦克风，请连接设备后重试。':e.message;throw Error(msg);}
+  }
+  pause(){this.paused=!this.paused;if(this.paused)this.segmenter?.flush();return this.paused;}
+  async stop(flush=true){this.active=false;if(flush)this.segmenter?.flush();else this.segmenter?.reset();this.node?.disconnect();this.source?.disconnect();this.stream?.getTracks().forEach(t=>t.stop());if(this.context&&this.context.state!=='closed')await this.context.close();this.onLevel?.(0);}
+}
+export class AudioPlayback{
+  constructor(onState,onEnergy=()=>{}){this.onState=onState;this.onEnergy=onEnergy;this.enabled=true;this.sources=new Set();this.generation=0;this.nextTime=0;this.decoders=new Map();this.fileQueue=[];this.processing=false;}
+  async unlock(){if(!this.context||this.context.state==='closed'){this.context=new AudioContext();this.analyser=this.context.createAnalyser();this.analyser.fftSize=256;this.analyser.connect(this.context.destination);this.energySamples=new Float32Array(256);}await this.context.resume();}
+  async pcm(event,key='default'){
+    if(!this.enabled)return;const generation=this.generation;await this.unlock();if(generation!==this.generation||!this.enabled)return;let decoder=this.decoders.get(key);if(!decoder){decoder=new PCMDecoder();this.decoders.set(key,decoder);}const binary=atob(event.data),bytes=Uint8Array.from(binary,c=>c.charCodeAt(0)),samples=decoder.decode(bytes);if(!samples.length)return;
+    const buffer=this.context.createBuffer(1,samples.length,event.sample_rate||24000);buffer.copyToChannel(samples,0);this.schedule(buffer);
+  }
+  schedule(buffer){const source=this.context.createBufferSource();source.buffer=buffer;source.connect(this.analyser);const start=Math.max(this.context.currentTime+.025,this.nextTime);this.nextTime=start+buffer.duration;this.sources.add(source);this.onState(true);if(!this.energyTimer)this.energyTimer=setInterval(()=>{this.analyser.getFloatTimeDomainData(this.energySamples);let sum=0;for(const n of this.energySamples)sum+=n*n;this.onEnergy(Math.sqrt(sum/this.energySamples.length));},50);source.onended=()=>{this.sources.delete(source);source.disconnect();if(!this.sources.size){clearInterval(this.energyTimer);this.energyTimer=null;this.onEnergy(0);this.onState(false)}};source.start(start);}
+  file(url){if(!this.enabled||!allowedAudioUrl(url))return;this.fileQueue.push(url);void this.pumpFiles();}
+  async pumpFiles(){if(this.processing)return;this.processing=true;const generation=this.generation;try{while(this.fileQueue.length&&generation===this.generation){const url=this.fileQueue.shift(),response=await fetch(url,{headers:{'X-App-Token':document.querySelector('meta[name=app-token]').content}});if(!response.ok)continue;await this.unlock();const buffer=await this.context.decodeAudioData(await response.arrayBuffer());if(generation===this.generation)this.schedule(buffer);}}catch{}finally{this.processing=false;if(this.fileQueue.length)void this.pumpFiles();}}
+  stop(){this.generation++;this.fileQueue=[];this.decoders.clear();clearInterval(this.energyTimer);this.energyTimer=null;for(const source of this.sources){source.onended=null;try{source.stop();source.disconnect()}catch{}}this.sources.clear();this.nextTime=0;this.onEnergy(0);this.onState(false);}
+  setEnabled(value){this.enabled=value;if(!value)this.stop();}
+}

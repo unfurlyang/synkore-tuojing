@@ -1,0 +1,4 @@
+MIMO_API_KEY=replace_with_your_own_key
+SESSION_SECRET=replace_with_at_least_32_random_bytes
+CLOUD_DAILY_LIMIT=600
+VISITOR_DAILY_LIMIT=120

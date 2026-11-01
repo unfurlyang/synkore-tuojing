@@ -1,0 +1,58 @@
+"""Curated public references and original short study notes. No downloaded lectures."""
+from datetime import datetime, timezone
+from app.schemas import TeacherProfile
+
+NOTE = '公开资料启发的讲解方案，由 synkore 整理；不是本人生成、授权或逐句模仿，不包含本人音色。具体改写规则是产品设计建议。'
+TEACHERS = [
+    dict(profile_id='preset-yishu', name='一数 · 基础到题型',
+         language_features=['先解释概念，再用短句分解步骤', '指出常见误区，区分条件和结论'],
+         teaching_structure=['概念与适用条件 → 典型题型 → 方法回顾', '由基础题逐步过渡到综合问题'],
+         thinking_patterns=['按概念、条件、题型组织知识'],
+         rewrite_rules=['先明确本段研究的对象和条件', '保留原文全部公式、数值和推导步骤', '将长推导分成带理由的短步骤', '最后归纳原文已有的方法，不增编题目'],
+         evidence=['作者公开课程目录涵盖集合、逻辑、函数概念与性质，并按章节及模块组织。'],
+         sources=[{'title':'一数官方 · 必刷100讲课程目录', 'url':'https://www.bilibili.com/list/14229967?bvid=BV15SH9eREx2&oid=113090934866828'}], subjects=['高中数学', '基础衔接']),
+    dict(profile_id='preset-songhao', name='宋浩 · 数学循序讲解',
+         language_features=['用自然易懂的中文解释数学术语', '说明每次运算的理由与成立条件'],
+         teaching_structure=['直观理解 → 定义 → 分步计算 → 检验', '先建立知识联系，再归纳解题方法'],
+         thinking_patterns=['把抽象定义和具体计算连接起来'],
+         rewrite_rules=['首次出现术语时解释其在原文中的含义', '公式与文字解释相邻呈现', '逐步说明变形依据，保留全部前提', '只使用原文已有例子，不编造教师口头禅'],
+         evidence=['教师官方网站列出高等数学、微积分、线性代数及概率论与数理统计等课程。'],
+         sources=[{'title':'宋浩老师数学官方网站', 'url':'https://www.songhaomath.com/'}], subjects=['高等数学', '线性代数', '概率统计']),
+    dict(profile_id='preset-liyongle', name='李永乐 · 问题到原理',
+         language_features=['围绕一个明确问题组织解释', '用直观表达连接现象和原理'],
+         teaching_structure=['原文问题或现象 → 科学模型 → 推理 → 结论', '解释模型成立的条件和局限'],
+         thinking_patterns=['从具体问题追问背后的科学原理'],
+         rewrite_rules=['用原文的问题作开头，没有问题则直接点明主题', '明确区分现象、假设、公式与结论', '保留物理量单位、方向和适用条件', '不添加原文没有的新闻、故事或实验数据'],
+         evidence=['首都文明网人物报道介绍其从社会热点切入科学科普，以及物理教学与实验实践。'],
+         sources=[{'title':'首都文明网 · 李永乐人物报道', 'url':'https://www.bjwmb.gov.cn/bjby/pxbd/2021/09/02/860706.html'}], subjects=['物理', '科学导学']),
+]
+
+def preset_profiles(user_id):
+    return [TeacherProfile(user_id=user_id, source_filename='public-reference', transcript_excerpt='',
+        avoid_features=['不冒充教师本人，不模仿其音色', '不将设计建议当作对教师真实课堂的完整分析'],
+        created_at=datetime(2026, 11, 1, tzinfo=timezone.utc), is_preset=True, evidence_note=NOTE, **p) for p in TEACHERS]
+
+BASE='https://ocw.mit.edu/courses/'
+COURSES = [
+    dict(course_id='calculus-1', title='高等数学（上）', topics=['极限与连续','导数与变化率','定积分'],
+        source_title='MIT OCW · Single Variable Calculus', source_url=BASE+'18-01sc-single-variable-calculus-fall-2010/',
+        text='【synkore 原创导学示例：高等数学（上）】\n一、极限与连续。极限描述自变量趋近某个位置时，函数值趋向什么；函数在该点有无定义，是另外的问题。例如当 x 趋于 1 且 x 不等于 1 时，(x²−1)/(x−1)=x+1，所以极限为 2。不能直接把分母为零的式子当成函数值。连续则同时要求函数在该点有定义、极限存在，并且两者相等。\n二、导数。导数是差商的极限，表示瞬时变化率。对 f(x)=x²，差商为 ((x+h)²−x²)/h=2x+h；令 h 趋于 0，得到 f′(x)=2x。讨论导数前，应检查定义域和可导条件；可导必连续，连续未必可导，例如绝对值函数在 0 处连续但不可导。\n三、定积分。把区间切成小段，用函数值乘以小段宽度再求和，取极限得到定积分。当函数在区间上连续时，可用原函数计算积分。例如 x² 在 0 到 1 上的定积分等于 [x³/3] 从 0 到 1 的差，为 1/3。定积分给出有符号的累积量；函数有负值时，积分不一定等于几何面积。'),
+    dict(course_id='calculus-2', title='高等数学（下）', topics=['偏导数','二重积分','级数衔接'],
+        source_title='MIT OCW · Multivariable Calculus', source_url=BASE+'18-02sc-multivariable-calculus-fall-2010/',
+        text='【synkore 原创导学示例：高等数学（下）】\n一、多元变化。对 z=f(x,y)，求关于 x 的偏导数时固定 y，求关于 y 的偏导数时固定 x。例如 f(x,y)=x²+y²，则两个偏导数分别为 2x 和 2y。偏导存在并不足以单独保证函数可微，不能把这两个条件混同。\n二、全微分。在可微条件下，小变化可以用 df=f_x dx+f_y dy 近似。对上述函数，在 (1,2) 处有 df=2dx+4dy。它是局部一阶近似，不是任意有限变化的精确等式。\n三、二重积分。对矩形区域 0≤x≤1、0≤y≤2，积分函数为 x+y。先对 y 积分，得到 2x+2；再对 x 从 0 到 1 积分，结果为 3。交换积分顺序需要核对积分条件，并正确描述同一个区域，不能只把微分符号调换。\n四、级数衔接。几何级数 1+r+r²+… 在 |r|<1 时收敛，其和为 1/(1−r)。例如 r=1/2 时和为 2；离开收敛范围，不能直接套用求和公式。'),
+    dict(course_id='linear-algebra', title='线性代数', topics=['线性方程组','矩阵与秩','特征值'],
+        source_title='MIT OCW · Linear Algebra', source_url=BASE+'18-06sc-linear-algebra-fall-2011/',
+        text='【synkore 原创导学示例：线性代数】\n一、方程组的几何意义。方程组 x+y=3、x−y=1 表示两条直线的交点。将两式相加，得到 2x=4，因而 x=2、y=1。写成 Ax=b 时，矩阵 A 的每一列表示一个方向，未知量决定沿各列方向取多少。\n二、秩与解。对有 n 个未知量的线性方程组，若系数矩阵的秩与增广矩阵的秩不同，则无解；若相同且等于 n，则有唯一解；若相同但小于 n，则有无穷多解。这些判据应在同一数域下使用。\n三、特征值。若非零向量 v 满足 Av=λv，则 v 为特征向量，λ 为对应特征值。矩阵 diag(2,3) 将两个坐标轴方向分别伸长为原来的 2 倍和 3 倍，所以其特征值为 2 和 3。特征向量必须非零，零向量不能作为特征向量。\n四、检查。解出方程组后代回原方程；求得特征值后验证 Av=λv。保留这些检验步骤，可以及时发现符号和运算错误。'),
+    dict(course_id='probability', title='概率论与数理统计', topics=['条件概率','期望与方差','统计推断'],
+        source_title='MIT OCW · Probability and Statistics', source_url=BASE+'18-05-introduction-to-probability-and-statistics-spring-2022/',
+        text='【synkore 原创导学示例：概率论与数理统计】\n一、条件概率。P(A|B)=P(A∩B)/P(B)，要求 P(B)>0。已知 B 发生，会改变观察的样本范围。条件概率 P(A|B) 与 P(B|A) 通常不同，不能把条件方向颠倒。\n二、独立性。事件 A、B 独立的条件是 P(A∩B)=P(A)P(B)。独立与互斥不是同义词；两个概率均为正的互斥事件不独立。\n三、期望和方差。对取值为 0 或 1、取 1 的概率为 p 的随机变量 X，E(X)=p，Var(X)=p(1−p)。当 p=1/2 时，期望为 1/2，方差为 1/4。期望描述长期平均水平，不表示每一次都取到该值。\n四、抽样与推断。样本均值用样本估计总体均值，结论依赖抽样方式和模型前提。频率学派的 95% 置信区间，含义是重复抽样构造的区间约有 95% 覆盖固定总体参数；不能直接解释成已观测区间中的参数有 95% 的随机概率。'),
+    dict(course_id='physics', title='大学物理 · 力学', topics=['速度与加速度','牛顿定律','功与能'],
+        source_title='MIT OCW · Classical Mechanics', source_url=BASE+'8-01sc-classical-mechanics-fall-2016/',
+        text='【synkore 原创导学示例：大学物理·力学】\n一、运动描述。速度是位置对时间的变化率，加速度是速度对时间的变化率。物体速度不为零，不代表加速度一定不为零；匀速直线运动的加速度为零。速度与加速度均为矢量，应注明方向。\n二、牛顿第二定律。在惯性参考系中，对质量不变的质点有合外力 F=ma。质量为 2 kg 的物体受到沿正方向的 6 N 合外力时，加速度为 3 m/s²。这里必须使用合外力，不能只取某一个力而忽略其余作用。\n三、功和动能。恒力做功为力与位移的点积；合外力做功等于动能变化。质量为 2 kg 的物体从静止运动到 3 m/s，动能增加 9 J，因此合外力做功为 9 J。\n四、机械能。只有重力或其他保守力做功时，动能与势能之和守恒。若存在摩擦，机械能可能转化为内能，但不能据此说总能量消失。求解前先选系统、参考系和正方向，再写受力与能量关系。'),
+    dict(course_id='python', title='Python 程序设计', topics=['分支与循环','函数与列表','边界测试'],
+        source_title='MIT OCW · Programming in Python', source_url=BASE+'6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/',
+        text='【synkore 原创导学示例：Python 程序设计】\n一、变量与类型。变量名绑定到对象；整数、浮点数和字符串的操作规则不同。例如 2+3 得到整数 5，字符串 "2"+"3" 则得到 "23"。不能把字符串拼接与数值相加混为一谈。\n二、循环。range(3) 依次给出 0、1、2，不包含 3。初始化 total=0 后，对 range(1,4) 中的每个 i 执行 total+=i，结果为 6。检查循环时应明确起点、终点是否包含，以及循环体的缩进。\n三、函数。def 声明函数，return 将结果交给调用者；print 只是输出内容，不会代替返回值。没有显式 return 的函数返回 None。\n四、列表与别名。若 a=[1,2]，再令 b=a，那么二者引用同一个列表；执行 b.append(3) 后，a 也变为 [1,2,3]。若希望对这个仅含整数的列表建立独立副本，可以用 b=a.copy()。\n五、边界测试。除了正常输入，还应检查空列表、单元素、零值等边界。遇到错误先阅读报错行，再验证输入类型和循环范围，不要只看最后输出。'),
+]
+
+def course_by_id(course_id):
+    return next((c for c in COURSES if c['course_id'] == course_id), None)

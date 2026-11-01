@@ -1,0 +1,42 @@
+name: Validate and build
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  cloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            desktop/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix desktop
+      - run: npm test
+      - run: npm run build
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+        working-directory: desktop
+      - run: python -m pip install -r requirements-build.txt
+        working-directory: desktop
+      - run: python -m pytest backend/tests -q
+        working-directory: desktop
+      - run: python scripts/build-desktop.py
+        working-directory: desktop
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Synkore-Tuojing-Windows-x64
+          path: desktop/release/Synkore-Tuojing-1.6.0-Windows-x64/
